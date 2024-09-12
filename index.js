@@ -9,7 +9,7 @@ app.use(express.json());
 
 // Webhook para receber mensagens
 app.get('/webhook', (req, res) => {
-    const verifyToken = 'EAAFzdePrfwsBO9GIrjsKOtQDlpflULwCNzZANT2EOYP1mpoZBE33ZCIv2Q2y39j4O2DxOTcOcoo6aJZCr41gZCLTSvWGFuZBrF7kbcZBKwcRZC7WtsZBLyIFmZAASsVOSXPuuBNJZC0u2vTgVlgB2qwdMvo2T3ZCIdXjgo9Lu9zWcVJXWg2Cy01EsqejZCoXx9qeGfMquyCHZAmilyEAexQszTSScfiZAPAQQxy';
+    const verifyToken = 'meu_token_secreto';
 
     const mode = req.query['hub.mode'];
     const token = req.query['hub.verify_token'];
