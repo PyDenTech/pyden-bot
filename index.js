@@ -41,7 +41,7 @@ const sendMessage = async (phoneNumber, text) => {
 
 // Testar envio de mensagem
 app.get('/send', (req, res) => {
-    const testPhoneNumber = '5511999999999'; // Substitua pelo número de telefone para teste
+    const testPhoneNumber = '5594991989803'; // Substitua pelo número de telefone para teste
     sendMessage(testPhoneNumber, 'Olá! Este é um teste de bot.');
     res.send('Mensagem de teste enviada!');
 });
