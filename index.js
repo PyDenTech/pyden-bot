@@ -8,14 +8,23 @@ const PHONE_ID = '438514116006700';
 app.use(express.json());
 
 // Webhook para receber mensagens
-app.post('/webhook', (req, res) => {
-    const message = req.body;
-    console.log('Mensagem recebida:', message);
+app.get('/webhook', (req, res) => {
+    const verifyToken = 'EAAFzdePrfwsBO9GIrjsKOtQDlpflULwCNzZANT2EOYP1mpoZBE33ZCIv2Q2y39j4O2DxOTcOcoo6aJZCr41gZCLTSvWGFuZBrF7kbcZBKwcRZC7WtsZBLyIFmZAASsVOSXPuuBNJZC0u2vTgVlgB2qwdMvo2T3ZCIdXjgo9Lu9zWcVJXWg2Cy01EsqejZCoXx9qeGfMquyCHZAmilyEAexQszTSScfiZAPAQQxy';
 
-    // Adicione lógica de tratamento de mensagens aqui
+    const mode = req.query['hub.mode'];
+    const token = req.query['hub.verify_token'];
+    const challenge = req.query['hub.challenge'];
 
-    res.sendStatus(200);
+    if (mode && token) {
+        if (mode === 'subscribe' && token === verifyToken) {
+            console.log('WEBHOOK_VERIFICADO');
+            res.status(200).send(challenge);
+        } else {
+            res.sendStatus(403);
+        }
+    }
 });
+
 
 // Enviar mensagem para o WhatsApp
 const sendMessage = async (phoneNumber, text) => {
